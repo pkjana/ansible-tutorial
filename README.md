@@ -1,5 +1,5 @@
 # Ansible Tutorial
-Ansible installation, configuration and execution on VirtualBox
+This tutorial regarding Ansible installation, configuration and execution on VirtualBox. It is created during practice session of [Ansible course](https://www.youtube.com/playlist?list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70) of Learn Linux TV
 
 
 # Configure the Ansible Hosts 
@@ -68,9 +68,9 @@ List all host from inventory
 $ ansible all --list-hosts
 
 All information about servers
-$ ansible all -m gathers_facts
+$ ansible all -m gather_facts
 
-$ ansible all -m gathers_facts --limit <host ip>  // for a specific host
+$ ansible all -m gather_facts --limit <host ip>  // for a specific host
 
 To update the all servers
 $ ansible all -m apt -a update_cache=true   // it will fail because sudo is require
@@ -91,5 +91,10 @@ $ ansible-playbook --ask-become-pass install_apache.yaml
 $ cp install_apache.yaml remove_apache.yaml
 $ nano remove_apache.yaml     // To remove the apache2 package from all host
 $ ansible-playbook --ask-become-pass remove_apache.yaml
+
+For CentOS server httpd server ststus inactive by default. So for the time being we need to start the httpd server manually by following commands then it will show default Http Server Page in web browser.
+$ sudo systemctl status httpd
+$ sudo systemctl start httpd
+$ sudo firewall-cmd --add-port=80/tcp
 
 
