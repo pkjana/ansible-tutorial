@@ -1,0 +1,63 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install updates (Ubuntu)
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install updates (CentOS)
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: Install apache2 and php packages for Ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install apache httpd and php packages for CentOS
+    dnf:
+      name:
+        - httpd
+        - php
+    when: ansible_distribution == "CentOS"
+
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: Install mariadb package (CentOS)
+    dnf:
+      name: mariadb
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Install mariadb package (Ubuntu)
+    apt:
+      name: mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: Install samba package
+    package:
+      name: samba
+      state: latest
