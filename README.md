@@ -97,4 +97,13 @@ $ sudo systemctl status httpd
 $ sudo systemctl start httpd
 $ sudo firewall-cmd --add-port=80/tcp
 
+# How to individulalized our host and install different packages in different categories of servers. 
+
+Modify ansible config file by using this inventory_specific_nodes inventory file while executing the install_pkg_on_specific_nodes.yaml playbook.\
+
+Check the DB server status using following command.\
+$ systemctl status mariadb
+
+Check the file server status using following command.\
+$ systemctl status smbd
 
