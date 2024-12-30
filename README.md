@@ -1,5 +1,5 @@
 # Ansible Tutorial
-This tutorial regarding Ansible installation, configuration and execution on VirtualBox. It is created during practice session of [Ansible course](https://www.youtube.com/playlist?list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70) of Learn Linux TV
+This tutorial regarding Ansible installation, configuration and execution on VirtualBox. It is created during practice session of [Ansible course](https://www.youtube.com/playlist?list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70) by Learn Linux TV
 
 
 # Configure the Ansible Hosts 
