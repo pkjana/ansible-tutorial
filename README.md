@@ -101,11 +101,26 @@ $ sudo firewall-cmd --add-port=80/tcp
 
 # How to individulalized our host and install different packages in different categories of servers. 
 
-Modify ansible config file by using this inventory_specific_nodes inventory file while executing the install_pkg_on_specific_nodes.yaml playbook.
+Modify ansible config file by using this **inventory_specific_nodes** inventory file while executing the **install_pkg_on_specific_nodes.yaml** playbook.
 
 Check the DB server status using following command.\
 $ systemctl status mariadb
 
 Check the file server status using following command.\
 $ systemctl status smbd
+
+# Tags
+
+Ansible tags serve as markers that can be added to individual tasks within an Ansible playbook, enabling the execution of specific or designated tasks based on these tags during playbook runs. You'll occasionally need to execute only a portion of a playbook rather than the whole thing.
+
+Show the available tags in the playbook.\
+$ ansible-playbook --list-tags install_pkg_by_tags.yaml   // to execute the playbook use the inventory **inventory_specific_nodes**
+
+$ ansible-playbook --tags centos --ask-become-pass install_pkg_by_tags.yaml
+
+$ ansible-playbook --tags db --ask-become-pass install_pkg_by_tags.yaml
+
+$ ansible-playbook --tags apache --ask-become-pass install_pkg_by_tags.yaml
+
+$ ansible-playbook --tags "apache,db" --ask-become-pass install_pkg_by_tags.yaml   // execute multiple tags
 
