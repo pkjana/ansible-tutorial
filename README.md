@@ -59,7 +59,7 @@ $ ssha
 You can add the alias command to .bashrc
 
 
-### Running ad-hoc commands ###
+# Running ad-hoc commands
 
 $ ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 
@@ -101,7 +101,7 @@ $ sudo firewall-cmd --add-port=80/tcp
 
 # How to individulalized our host and install different packages in different categories of servers. 
 
-Modify ansible config file by using this inventory_specific_nodes inventory file while executing the install_pkg_on_specific_nodes.yaml playbook.\
+Modify ansible config file by using this inventory_specific_nodes inventory file while executing the install_pkg_on_specific_nodes.yaml playbook.
 
 Check the DB server status using following command.\
 $ systemctl status mariadb
