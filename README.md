@@ -124,3 +124,9 @@ $ ansible-playbook --tags apache --ask-become-pass install_pkg_by_tags.yaml
 
 $ ansible-playbook --tags "apache,db" --ask-become-pass install_pkg_by_tags.yaml   // execute multiple tags
 
+# Managing Files
+
+$ ansible-playbook  --ask-become-pass managing_files.yaml   // to execute the playbook use the inventory inventory_specific_nodes
+
+To testing the web page call the web server ip address from browser or use curl command in CLI.\
+$ curl 192.168.100.9
