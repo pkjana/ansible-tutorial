@@ -130,3 +130,16 @@ $ ansible-playbook  --ask-become-pass managing_files.yaml   // to execute the pl
 
 To testing the web page call the web server ip address from browser or use curl command in CLI.\
 $ curl 192.168.100.9
+
+# Managing Services
+
+There are lots of services manage by Ansible. Here three services are covered in the managing_services.yaml playbook regarding webserver start, restart, config change.
+
+Check the status of the httpd server\
+$ sudo systemctl status httpd
+
+If it is in running state then stop it and verify it in web browser.\
+$ sudo systemctl stop httpd
+
+Check the status again of the httpd server. It should be in inactive state and service may be desabled. If the service is desabled while server rebootted then server will not be start automatically. \
+$ sudo systemctl status httpd
