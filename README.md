@@ -193,3 +193,7 @@ $ cp user_management.yaml user_management_post_bootstrap.yaml
 
 $ ansible-playbook user_management_post_bootstrap.yaml  // become password is no longer needed.
 
+We did not erase the "Add ssh key for simone" task in the user_management_post_bootstrap.yaml for future key management. 
+
+
+
