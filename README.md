@@ -159,7 +159,7 @@ $ cat /etc/passwd
 If we add a users file to /etc/sudoers.d directory with the sudoer syntax we are able to control access to sudo 
 $ ls -l /etc/sudoers.d/
 
-$ ssh -i ~/.ssh/ansible simone@<node-IP>
+$ ssh -i ~/.ssh/ansible simone@`<node-IP>`
 
 As we can see I was logged in immediately to that server without no passphrase or no password.\
 $ whoami  // it should show the user name simone.
@@ -174,7 +174,7 @@ As we in times of executing playbook it is asking server password.
 $ ansible-playbook --ask-become-pass <playbook file>
 
 To over come this problem we need to add following text to ansible config file\
-remote_user=<user name>  // here user name is simone. 
+remote_user=`<user-name>`  // here user name is simone. 
 
 Now we run playbook with user simone. There no need flag --ask-become-pass
 $ ansible-playbook <playbook file>
