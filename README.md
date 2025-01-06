@@ -143,3 +143,53 @@ $ sudo systemctl stop httpd
 
 Check the status again of the httpd server. It should be in inactive state and service may be desabled. If the service is desabled while server rebootted then server will not be start automatically. \
 $ sudo systemctl status httpd
+
+
+# User Management
+
+1. Create the user 
+2. Add authorize key module to the user
+3. Add sudoers profile to the user
+
+In the *user_management.yaml* above three task are covered. Use inventory_specific_nodes inventory file in ansible config file to run this playbook. Dont forget to modify your public key and you may change your desire user name in the proper task.     
+
+Before running the playbook you can check the your desire name in the passwd file.\
+$ cat /etc/passwd
+
+If we add a users file to /etc/sudoers.d directory with the sudoer syntax we are able to control access to sudo 
+$ ls -l /etc/sudoers.d/
+
+$ ssh -i ~/.ssh/ansible simone@<node-IP>
+
+As we can see I was logged in immediately to that server without no passphrase or no password.\
+$ whoami  // it should show the user name simone.
+$ sudo apt update  // do not get any password prompt
+$ cat .ssh/authorize_keys  //it will show authorize_keys added to the user
+$ sudo cat /etc/sudoers.d/simone    // to show the sudoer profile syntax of the user simone
+
+
+## Password less  playbook execution
+
+As we in times of executing playbook it is asking server password.
+$ ansible-playbook --ask-become-pass <playbook file>
+
+To over come this problem we need to add following text to ansible config file\
+remote_user=<user name>  // here user name is simone. 
+
+Now we run playbook with user simone. There no need flag --ask-become-pass
+$ ansible-playbook <playbook file>
+
+## Simplify and segregate the playbook
+
+when we are setting up a fresh server we are not going to have the simone user on that server. So what we generally like to do is create a bootstrap playbook and in that playbook i will put all the commands in there that are required to initility set up server with the users and anything that's absolutely required to get ansible itself provisioned. 
+
+In the bootstrap playbook we install OS update, create user, add ssh public key to that user and sudoer file to the user. So there is a initial playbook called  bootstrap.yaml
+$ ansible-playbook --ask-become-pass bootstrap.yaml
+
+
+Now we have our desire user name (simone) with public key. So, we simplify the user_management.yaml and copied it to user_management_post_bootstrap.yaml.
+
+$ cp user_management.yaml user_management_post_bootstrap.yaml
+
+$ ansible-playbook user_management_post_bootstrap.yaml  // become password is no longer needed.
+
