@@ -196,5 +196,15 @@ $ ansible-playbook user_management_post_bootstrap.yaml  // become password is no
 
 We did not erase the "Add ssh key for simone" task in the user_management_post_bootstrap.yaml for future key management. 
 
+# Roles
+
+Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure. After you group your content into roles, you can easily reuse them and share them with other users. 
+
+## Role directory structure
+An Ansible role has a defined directory structure. Here we have created roles for tasks. So, we created *roles* directory then create role name dir (i.e. web_servers, etc) under it , under role name need to create *tasks* directory and under tasks need to create *main.yaml*
+
+Use *inventory_specific_nodes* inventory file in ansible config file to run this *roles_management.yaml* playbook.
+
+$ ansible-playbook roles_management.yaml
 
 
