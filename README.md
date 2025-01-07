@@ -183,7 +183,7 @@ $ ansible-playbook <playbook file>
 
 when we are setting up a fresh server we are not going to have the simone user on that server. So what we generally like to do is create a bootstrap playbook and in that playbook i will put all the commands in there that are required to initility set up server with the users and anything that's absolutely required to get ansible itself provisioned. 
 
-In the bootstrap playbook we install OS update, create user, add ssh public key to that user and sudoer file to the user. So there is a initial playbook called  bootstrap.yaml
+In the bootstrap playbook we install OS update, create user, add ssh public key to that user and sudoer file to the user. So there is a initial playbook called  bootstrap.yaml. Before executing the bootstrap playbook you need to comment out the remote_user line in the ansible.cfg file. Otherwise the playbook will not create the user.
 $ ansible-playbook --ask-become-pass bootstrap.yaml
 
 
@@ -191,6 +191,7 @@ Now we have our desire user name (simone) with public key. So, we simplify the u
 
 $ cp user_management.yaml user_management_post_bootstrap.yaml
 
+Before executing the bootstrap playbook you need to uncomment the remote_user line in the ansible.cfg file.\
 $ ansible-playbook user_management_post_bootstrap.yaml  // become password is no longer needed.
 
 We did not erase the "Add ssh key for simone" task in the user_management_post_bootstrap.yaml for future key management. 
