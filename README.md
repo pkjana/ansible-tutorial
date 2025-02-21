@@ -7,21 +7,27 @@ This tutorial regarding Ansible installation, configuration and execution on Vir
  1. Create a three nodes cluster in VirtualBox one of the nodes would be controller node where Ansible will be install.
  
 # Configure network between hosts
-
- 1. Open VirtualBox
- 2. Select "Tools" in left pane
- 3. Select "NAT Networks" in right pane
- 4. Click on "Create" in right pane
- 5. Select Newly Created NatNetwork
- 6. Click on "Propertics" in right pane
- 7. Select "General options" in the bottom of the write pane.
- 8. Rename your Desire Network Name
- 9. Put IP with CIDR (i.e. 192.168.100.0/24)
- 10. Check DHCP
- 11. Select Port Forwarding 
- 12. Forward SSH port for each VM
  
-
+ ## Configure network adapter
+ 
+ 1. Open VirtualBox
+ 2. Select "Tools" in left pane 
+ 3. Select Host-only Networks
+ 4. Click on "Create" in right pane
+ 5. Select Newly Created Host-only Network
+ 6. Click on "Properties" in right pane
+ 7. Select "Configure Adapter Manually" in the Adapter Tab from the bottom pane.
+ 8. Put IP Address and netmask manually ( i.e IP: 192.168.60.1 Netmask: 255.255.255.0)
+ 9. Don't enable DHCP
+ 
+ ## Configure network in VM
+ 
+ 1. Select VM
+ 2 Click Settings on right pane
+ 3. Select Network
+ 4. Adapter 1 attached to NAT   // it is for internet
+ 5. Adapter 2 attached to Host-only Adapter and choose your pre configured Host-only adapter name
+ 
 # How to install ansible?
 
 Ansible should be install in control node
