@@ -2,17 +2,17 @@
 # Apache file operation 
 
 - host: webservers
-  become: true
+  become: true 
   
   tasks:
     
-	- name: Check Apache Status on Ubuntu
-	  ansible.builtin.service:
-	    name: apache2    
+    - name: Check Apache Status on Ubuntu
+      ansible.builtin.service:
+        name: apache2    
         state: started
-	  register: apache_status
-	  check_mode: true
-	  when: ansible_distribution == "Ubuntu"
+	register: apache_status
+	check_mode: true
+      when: ansible_distribution == "Ubuntu"
 
     - name: debug
       ansible.builtin.debug:
@@ -26,7 +26,7 @@
         owner: root
         group: root
         mode: 0644
-	  when: httpd.changed
+      when: apache_status.changed
 	  
 	  
 # Here we are using Ansible fetch module to copy file from remote machines to local.
@@ -36,12 +36,10 @@
   become: true
   
   tasks:
-    
-	- name: Copy file from remote machines to local.
+    - name: Copy file from remote machines to local.
       fetch:
         src: /var/log/apache2/access.log
         dest: /tmp/fetched
-		# flat: yes 
-	  when: ansible_distribution == "Ubuntu"
-	  
+	# flat: yes 
+      when: ansible_distribution == "Ubuntu"
 	  
